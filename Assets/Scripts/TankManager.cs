@@ -110,6 +110,7 @@ public class TankManager : MonoBehaviour
             if (health <= 0)
             {
                 GameObject.Find("GameManager").GetComponent<TurnManager>().bothPlayersAlive = false;
+                GameObject.Find("GameManager").GetComponent<TurnManager>().losingPlayer = playerNumber;
                 Destroy(gameObject);
             }
 

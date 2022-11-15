@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
@@ -11,8 +12,12 @@ public class TurnManager : MonoBehaviour
     public bool bothPlayersAlive = true;
     GameObject restartMenu;
     bool restartMenuActive = false;
+    [SerializeField]
+    Text restartTextText;
     GameObject restartText;
     GameObject pauseText;
+    public int losingPlayer;
+    int winningPlayer;
 
 
     // Start is called before the first frame update
@@ -104,6 +109,14 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
+        if (losingPlayer == 1)
+        {
+            winningPlayer = 2;
+        }
+        else
+        {
+            winningPlayer = 1;
+        }
         if (Input.GetKeyDown(KeyCode.Escape) && restartMenuActive == false)
         {
             Debug.Log("Restart on");
@@ -121,7 +134,8 @@ public class TurnManager : MonoBehaviour
         }
 
         if (bothPlayersAlive == false)
-        {
+        { 
+            restartTextText.text = "player " + winningPlayer + " wins!";
             restartMenu.SetActive(true);
             restartText.SetActive(true);
         }
