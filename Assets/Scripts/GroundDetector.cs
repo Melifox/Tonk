@@ -18,11 +18,11 @@ public class GroundDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GetComponent<TankManager>().canJumpOrFire = true;
+        GetComponent<TargetTankController>().canJumpOrFire = true;
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        GetComponent<TankManager>().canJumpOrFire = false;
+        GetComponent<TargetTankController>().canJumpOrFire = false;
     }
 }
