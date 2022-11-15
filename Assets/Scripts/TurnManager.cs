@@ -10,12 +10,22 @@ public class TurnManager : MonoBehaviour
     public GameObject player2;
     public bool bothPlayersAlive = true;
     GameObject restartMenu;
+    bool restartMenuActive = false;
+    GameObject restartText;
+    GameObject pauseText;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
         restartMenu = GameObject.FindGameObjectWithTag("RestartMenu");
         restartMenu.SetActive(false);
+        restartText = GameObject.Find("RestartText");
+        restartText.SetActive(false);
+        pauseText = GameObject.Find("PauseText");
+        pauseText.SetActive(false);
+        
         GameObject.Find("Turnindicator1").GetComponent<SpriteRenderer>().color = Color.green;
         GameObject.Find("Turnindicator2").GetComponent<SpriteRenderer>().color = Color.red;
         GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
@@ -32,6 +42,7 @@ public class TurnManager : MonoBehaviour
         }
         Invoke("Init", 0.1f);
     }
+
     void Init()
     {    
         //de speler die aan de beurt is actief maken
@@ -87,15 +98,32 @@ public class TurnManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("URP2DSceneTemplate");
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        if (Input.GetKeyDown(KeyCode.Escape) && restartMenuActive == false)
+        {
+            Debug.Log("Restart on");
+
+            restartMenuActive = true;
+            restartMenu.SetActive(true);
+            pauseText.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && restartMenuActive == true)
+        {
+            Debug.Log("Restart off");
+            restartMenuActive = false;
+            restartMenu.SetActive(false);
+            pauseText.SetActive(false);
+        }
+
         if (bothPlayersAlive == false)
         {
             restartMenu.SetActive(true);
+            restartText.SetActive(true);
         }
     }
 }
