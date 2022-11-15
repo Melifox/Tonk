@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - RestartMenu
+  - Ground
   layers:
   - Default
   - TransparentFX

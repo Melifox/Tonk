@@ -23,12 +23,12 @@ public class BarrelController : MonoBehaviour
     {
         barrelRotator.RotateAround(Vector3.forward, Input.GetAxis("Vertical") * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.S))
         {
             bulletPower -= 0.01f;
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W))
         {
             bulletPower += 0.01f;
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,11 @@ public class TankManager : MonoBehaviour
     int percentagePower;
     [SerializeField]
     Text fuelUI;
-
+    [SerializeField]
+    Text bulletUI;
+    [SerializeField]
+    GameObject[] bullets;
+    int bulletSelected = 0;
 
 
 
@@ -51,18 +56,32 @@ public class TankManager : MonoBehaviour
         healthUI.text = health.ToString();
         powerUI.text = percentagePower.ToString() + "%";
         fuelUI.text = Mathf.RoundToInt(fuel * 5f).ToString() + "%";
+        bulletUI.text = bullets[bulletSelected].name;
 
 
         if (playerTurn == true)
         {
             barrelRotator.RotateAround(Vector3.forward, Input.GetAxis("Vertical") * Time.deltaTime);
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.C) && bulletSelected < bullets.Length - 1)
+            {
+                bulletSelected++;
+                Debug.Log(bullets[bulletSelected]);
+                BulletToFire = bullets[bulletSelected];
+            }
+            else if (Input.GetKeyDown(KeyCode.C))
+            {
+                bulletSelected = 0;
+                Debug.Log(bullets[bulletSelected]);
+                BulletToFire = bullets[bulletSelected];
+            }
+
+            if (Input.GetKey(KeyCode.S))
             {
                 bulletPower -= 0.005f;
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.W))
             {
                 bulletPower += 0.005f;
             }

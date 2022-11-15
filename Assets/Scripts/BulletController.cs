@@ -7,10 +7,12 @@ public class BulletController : MonoBehaviour
     float bulletTtl = 4;
     [SerializeField]
     GameObject bulletExplosion;
+    GameObject tank;
 
 
     void start()
     {
+
     }
     // Update is called once per frame
     void Update()
@@ -24,9 +26,15 @@ public class BulletController : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {   
+    {
         //explosionPosition = GameObject.FindGameObjectWithTag("Bullet").Transform;
         GameObject e = Instantiate(bulletExplosion, transform.position, transform.rotation);
         Destroy(gameObject);
+
+        if (collision.gameObject.tag == "Player")
+        {
+            tank = GameObject.FindGameObjectWithTag("Player");
+            tank.GetComponent<TankManager>().health -= 50;
+        }
     }
 }

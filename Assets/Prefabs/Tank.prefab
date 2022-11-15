@@ -96,6 +96,13 @@ MonoBehaviour:
   canJumpOrFire: 0
   fuel: 17
   health: 500
+  healthUI: {fileID: 0}
+  powerUI: {fileID: 0}
+  fuelUI: {fileID: 0}
+  bullets:
+  - {fileID: 6189298429198731915, guid: fd39b8b1e13eb4848b15923051052426, type: 3}
+  - {fileID: 2453309289988006426, guid: 9dcc265cbdf02ab44956240dd7d187d1, type: 3}
+  - {fileID: 4821805204426088224, guid: 47be0f5417d70814488a8a39464011ac, type: 3}
 --- !u!1 &7722246014533262947
 GameObject:
   m_ObjectHideFlags: 0
